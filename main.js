@@ -18,37 +18,25 @@ function showSuccess(input, message) {
   formControl.className = "form-control success";
 }
 
+//function to validate email
 function emailValidation(email) {
   const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(String(email).toLowerCase());
 }
 
+//function to check required fields
+function checkRequired(inputArray) {
+  inputArray.forEach(function(input) {
+    if (input.value.trim() === "") {
+      showError(input, "Field Required");
+    } else {
+      showSuccess(input);
+    }
+  });
+}
+
 form.addEventListener("submit", function(e) {
   e.preventDefault();
 
-  if (username.value === "") {
-    showError(username, "Username is required");
-  } else {
-    showSuccess(username);
-  }
-
-  if (email.value === "") {
-    showError(email, "Email is required");
-  } else if (emailValidation(email.value)) {
-    showError(email, "Email is not valid");
-  } else {
-    showSuccess(email);
-  }
-
-  if (password.value === "") {
-    showError(password, "Password is required");
-  } else {
-    showSuccess(password);
-  }
-
-  if (password2.value === "") {
-    showError(password2, "Password is required");
-  } else {
-    showSuccess(password2);
-  }
+  checkRequired([username, email, password, password2]);
 });
