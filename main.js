@@ -28,11 +28,15 @@ function emailValidation(email) {
 function checkRequired(inputArray) {
   inputArray.forEach(function(input) {
     if (input.value.trim() === "") {
-      showError(input, "Field Required");
+      showError(input, `${getFieldName(input)} is required`);
     } else {
       showSuccess(input);
     }
   });
+}
+
+function getFieldName(input) {
+  return input.id.charAt(0).toUpperCase() + input.id.slice(1);
 }
 
 form.addEventListener("submit", function(e) {
