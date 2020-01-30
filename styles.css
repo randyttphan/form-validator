@@ -87,8 +87,8 @@ h2 {
   display: block;
   font-size: 16px;
   padding: 10px;
-  margin-top: 20px;
-  width: 100%;
+  width: 50%;
+  margin: 20px auto;
 }
 
 .form button:hover {
