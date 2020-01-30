@@ -56,6 +56,13 @@ function checkLength(input, min, max) {
   }
 }
 
+//function to check if passwords match
+function checkPasswords(input1, input2) {
+  if (input1.value !== input2.value) {
+    showError(input2, "Passwords do not match");
+  }
+}
+
 function getFieldName(input) {
   return input.id.charAt(0).toUpperCase() + input.id.slice(1);
 }
@@ -67,4 +74,5 @@ form.addEventListener("submit", function(e) {
   checkLength(username, 4, 15);
   checkLength(password, 7, 25);
   emailValidation(email);
+  checkPasswords(password, password2);
 });
