@@ -19,9 +19,13 @@ function showSuccess(input, message) {
 }
 
 //function to validate email
-function emailValidation(email) {
+function emailValidation(input) {
   const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(String(email).toLowerCase());
+  if (re.test(input.value.trim())) {
+    showSuccess(input);
+  } else {
+    showError(input, "Email is not valid");
+  }
 }
 
 //function to check required fields
@@ -62,4 +66,5 @@ form.addEventListener("submit", function(e) {
   checkRequired([username, email, password, password2]);
   checkLength(username, 4, 15);
   checkLength(password, 7, 25);
+  emailValidation(email);
 });
